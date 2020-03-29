@@ -2,7 +2,7 @@ package com.demo.trendingrepozomato.dagger
 
 import com.demo.trendingrepozomato.BaseActivity
 import com.demo.trendingrepozomato.utils.MyApplication
-import com.gojeck.trendingrepo.main_screen.utils.BaseViewModel
+import com.demo.trendingrepozomato.utils.BaseViewModel
 import dagger.Component
 import javax.inject.Singleton
 

@@ -1,4 +1,4 @@
-package com.gojeck.trendingrepo.main_screen.utils
+package com.demo.trendingrepozomato.utils
 
 import android.content.SharedPreferences
 import androidx.databinding.ObservableField
@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 
 /**
- * Created by Ajeet Singh on 18/1/20.
+ * Created by Ajeet Singh on 29/3/20.
  */
  abstract class BaseViewModel(application: MyApplication) : ViewModel() {
 
