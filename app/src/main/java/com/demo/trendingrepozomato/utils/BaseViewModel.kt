@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.demo.trendingrepozomato.utils.MyApplication
-import com.gojeck.trendingrepo.main_screen.view_model.Repository
+import com.demo.trendingrepozomato.view_model.Repository
 import javax.inject.Inject
 
 

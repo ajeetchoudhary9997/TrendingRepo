@@ -1,10 +1,14 @@
 package com.demo.trendingrepozomato.models
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
 data class TrendingRepoResponse(
-
-    var id:Int=0,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
 
     @field:SerializedName("forks")
     var forks: Int? = null,
@@ -28,7 +32,10 @@ data class TrendingRepoResponse(
     var languageColor: String? = null,
 
     @field:SerializedName("stars")
-    var stars: Int? = null
+    var stars: Int? = null,
+
+    @Ignore
+    var isExpend: Boolean = false
 
 
 )

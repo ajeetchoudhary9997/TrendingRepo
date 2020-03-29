@@ -1,7 +1,8 @@
-package com.gojeck.trendingrepo.main_screen.view_model
+package com.demo.trendingrepozomato.view_model
 
 import com.demo.trendingrepozomato.models.TrendingRepoResponse
-import com.gojeck.trendingrepo.main_screen.room.TrendingRepoDatabase
+import com.demo.trendingrepozomato.room.TrendingRepoDatabase
+import com.demo.trendingrepozomato.utils.ApiInterface
 
 
 /**
