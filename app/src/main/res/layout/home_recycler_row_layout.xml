@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="trendingRepo"
+            type="com.demo.trendingrepozomato.models.TrendingRepoResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/row_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/rightGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="10dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repo_author_iv"
+            android:layout_width="@dimen/row_image_size"
+            android:layout_height="@dimen/row_image_size"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/leftGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{trendingRepo.avatar}"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/repo_author_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{trendingRepo.author}"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+            app:layout_constraintStart_toEndOf="@+id/repo_author_iv"
+            app:layout_constraintTop_toTopOf="@+id/repo_author_iv"
+            tools:text="Author name" />
+
+        <TextView
+            android:id="@+id/repo_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@{trendingRepo.author}"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_15"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+            app:layout_constraintStart_toStartOf="@+id/repo_author_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/repo_author_name_tv"
+            tools:text="Author name" />
+
+        <TextView
+            android:id="@+id/repo_description_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{trendingRepo.description}"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintEnd_toStartOf="@+id/rightGuideline"
+            app:layout_constraintStart_toStartOf="@+id/repo_name_tv"
+            app:layout_constraintTop_toBottomOf="@+id/repo_name_tv"
+            tools:text="Author name" />
+
+        <LinearLayout
+            android:id="@+id/imageView3"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:orientation="vertical"
+            app:setColor="@{trendingRepo.languageColor}"
+            app:layout_constraintBottom_toBottomOf="@+id/repo_language_tv"
+            app:layout_constraintStart_toStartOf="@+id/repo_description_tv"
+            app:layout_constraintTop_toTopOf="@+id/repo_language_tv"
+            />
+
+        <TextView
+            android:id="@+id/repo_language_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{trendingRepo.language}"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            tools:text="language" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/repo_language_tv"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description_tv"
+            app:srcCompat="@drawable/star_yellow" />
+
+        <TextView
+            android:id="@+id/repo_star_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{trendingRepo.stars.toString()}"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            tools:text="2020" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/repo_star_count_tv"
+            app:layout_constraintTop_toBottomOf="@+id/repo_description_tv"
+            app:srcCompat="@drawable/fork_black" />
+
+        <TextView
+            android:id="@+id/repo_forks_count_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{trendingRepo.forks.toString()}"
+            android:textColor="@color/repo_row_name_color"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="@+id/imageView5"
+            tools:text="213123" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/repo_bottom_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="repo_forks_count_tv,imageView5,repo_description_tv,repo_language_tv,imageView4,imageView3,repo_star_count_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

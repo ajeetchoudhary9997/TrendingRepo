@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">TrendingRepoZomato</string>
+    <string name="app_name">TrendingRepo</string>
+
+    <string name="trending">Trending</string>
+    <string name="retry">RETRY</string>
+    <string name="something_went_wrong">Something went wrong...</string>
+    <string name="an_alien_is_probably_blocking_your_signal">An alien is probably blocking your_signal.</string>
+
 </resources>
