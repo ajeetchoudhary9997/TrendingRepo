@@ -13,7 +13,9 @@ class ViewModelFactory(val application: MyApplication) : ViewModelProvider.Facto
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             return MainViewModel(application) as T
         } else {
-            throw IllegalArgumentException("ViewModel not found.")
+            throw IllegalArgumentException("ViewModel not found")
         }
     }
+
+
 }

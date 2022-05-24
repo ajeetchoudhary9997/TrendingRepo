@@ -25,7 +25,7 @@ class Repository(
         failed: (String?) -> Unit
     ) {
         try {
-            val arrayList = apiInterface.getTrendingRepo().await()
+            val arrayList = apiInterface.getTrendingRepoAsync().await()
             success(arrayList)
         } catch (e: Exception) {
             failed(e.message)

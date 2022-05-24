@@ -11,5 +11,5 @@ import retrofit2.http.Query
  */
 interface ApiInterface {
     @GET("/repositories")
-    fun getTrendingRepo(@Query("since") since: String = "daily"): Deferred<ArrayList<TrendingRepoResponse>>
+    fun getTrendingRepoAsync(@Query("since") since: String = "daily"): Deferred<ArrayList<TrendingRepoResponse>>
 }
