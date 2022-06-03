@@ -3,6 +3,8 @@ package com.demo.trendingrepozomato.view_model
 import com.demo.trendingrepozomato.models.TrendingRepoResponse
 import com.demo.trendingrepozomato.room.TrendingRepoDatabase
 import com.demo.trendingrepozomato.utils.ApiInterface
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -25,7 +27,7 @@ class Repository(
         failed: (String?) -> Unit
     ) {
         try {
-            val arrayList = apiInterface.getTrendingRepoAsync().await()
+            val arrayList =  withContext(Dispatchers.IO){apiInterface.getTrendingRepoAsync().await()}
             success(arrayList)
         } catch (e: Exception) {
             failed(e.message)
@@ -35,7 +37,7 @@ class Repository(
     /**
      * this method will load trending repo from the local database
      */
-    suspend fun loadDataFromLocal(
+     fun loadDataFromLocal(
         success: (ArrayList<TrendingRepoResponse>) -> Unit,
         failed: (String?) -> Unit
     ) {
@@ -51,7 +53,7 @@ class Repository(
     /**
      * this method will insert data into the local database
      */
-    suspend fun insertDataIntoLocal(
+     fun insertDataIntoLocal(
         trendingRepos: ArrayList<TrendingRepoResponse>,
         success: () -> Unit,
         failed: (String?) -> Unit
@@ -67,7 +69,7 @@ class Repository(
     /**
      * This method will delete all data from the trending repo table
      */
-    suspend fun deleteAllTrendingRepoFromLocal(
+     fun deleteAllTrendingRepoFromLocal(
         success: () -> Unit,
         failed: (String?) -> Unit
     ) {

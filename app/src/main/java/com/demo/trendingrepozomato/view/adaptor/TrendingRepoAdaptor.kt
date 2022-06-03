@@ -36,20 +36,20 @@ class TrendingRepoAdaptor(private val trendingRepoList: ArrayList<TrendingRepoRe
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val trendingRepoResponse = trendingRepoList[position]
 
-        holder.binding.root.let { view ->
-            view.repo_bottom_group.visibility =
+        holder.binding.let { binding ->
+            binding.repoBottomGroup.visibility =
                 if (trendingRepoResponse.isExpend) View.VISIBLE else View.GONE
-            view.setOnClickListener {
+            binding.root.setOnClickListener {
                 if (selectedIndex == -1) {
-                    view.repo_bottom_group.visibility = View.VISIBLE
+                    binding.repoBottomGroup.visibility = View.VISIBLE
                     trendingRepoResponse.isExpend = true
                     selectedIndex = position
                 } else if (selectedIndex == position) {
-                    view.repo_bottom_group.visibility = View.GONE
+                    binding.repoBottomGroup.visibility = View.GONE
                     trendingRepoResponse.isExpend = false
                     selectedIndex = -1
                 } else {
-                    view.repo_bottom_group.visibility = View.VISIBLE
+                    binding.repoBottomGroup.visibility = View.VISIBLE
                     trendingRepoResponse.isExpend = true
                     trendingRepoList[selectedIndex].isExpend = false
                     notifyItemChanged(selectedIndex)

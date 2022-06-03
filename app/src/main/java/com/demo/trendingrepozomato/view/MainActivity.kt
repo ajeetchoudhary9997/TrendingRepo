@@ -25,7 +25,7 @@ class MainActivity : BaseActivity() {
                     loadTrendingRepoData()
             }
 
-        pull_to_refresh_layout.setOnRefreshListener {
+        binding.pullToRefreshLayout.setOnRefreshListener {
             binding.mainViewModel?.apply {
                 if (isLoading.get() == false)
                     loadAfterSwipeRefreshLayout()
