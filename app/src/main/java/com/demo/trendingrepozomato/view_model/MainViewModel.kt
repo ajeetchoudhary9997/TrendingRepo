@@ -39,16 +39,17 @@ class MainViewModel(application: MyApplication) : BaseViewModel(application) {
      * Load trending repo from the server
      */
     private fun loadTrendingRepoDataFromServer() {
-        isRequestFailed.set(false)
-        val success: (ArrayList<TrendingRepoResponse>) -> Unit = { response ->
-            insertTrendingRepoDataIntoLocal(response)
-        }
-        val failed: (String?) -> Unit = {
-            isLoading.set(false)
-            isRequestFailed.set(true)
-        }
         CoroutineScope(Dispatchers.Main).launch {
+            isRequestFailed.set(false)
+            val success: (ArrayList<TrendingRepoResponse>) -> Unit = { response ->
+                insertTrendingRepoDataIntoLocal(response)
+            }
+            val failed: (String?) -> Unit = {
+                isLoading.set(false)
+                isRequestFailed.set(true)
+            }
             repository.loadDataFromServer(success, failed)
+
         }
     }
 
@@ -56,17 +57,17 @@ class MainViewModel(application: MyApplication) : BaseViewModel(application) {
      * Load TrendingRepo Data from the local repo and update the related live data
      */
     private fun loadTrendingRepoDataFromLocal() {
-        isLoading.set(true)
-        val success: (ArrayList<TrendingRepoResponse>) -> Unit = { response ->
-            repoResponse.value = response
-            isLoading.set(false)
-            isRequestFailed.set(false)
-        }
-        val failed: (String?) -> Unit = {
-            isLoading.set(false)
-            isRequestFailed.set(true)
-        }
         CoroutineScope(Dispatchers.Main).launch {
+            isLoading.set(true)
+            val success: (ArrayList<TrendingRepoResponse>) -> Unit = { response ->
+                repoResponse.value = response
+                isLoading.set(false)
+                isRequestFailed.set(false)
+            }
+            val failed: (String?) -> Unit = {
+                isLoading.set(false)
+                isRequestFailed.set(true)
+            }
             repository.loadDataFromLocal(success, failed)
         }
     }
@@ -75,16 +76,16 @@ class MainViewModel(application: MyApplication) : BaseViewModel(application) {
      * Load TrendingRepo Data from the local repo and update the related live data
      */
     private fun deleteTrendingRepoDataFromLocal() {
-        val success: () -> Unit = {
-            deleteCacheTime()
-            isLoading.set(true)
-            loadTrendingRepoDataFromServer()
-        }
-        val failed: (String?) -> Unit = {
-            isLoading.set(false)
-            isRequestFailed.set(true)
-        }
         CoroutineScope(Dispatchers.Main).launch {
+            val success: () -> Unit = {
+                deleteCacheTime()
+                isLoading.set(true)
+                loadTrendingRepoDataFromServer()
+            }
+            val failed: (String?) -> Unit = {
+                isLoading.set(false)
+                isRequestFailed.set(true)
+            }
             repository.deleteAllTrendingRepoFromLocal(success, failed)
         }
     }
@@ -93,18 +94,18 @@ class MainViewModel(application: MyApplication) : BaseViewModel(application) {
      * insert TrendingRepo Data into the local repo and update the related live data
      */
     private fun insertTrendingRepoDataIntoLocal(trendingRepos: ArrayList<TrendingRepoResponse>) {
-        val success: () -> Unit = {
-            saveCacheTime()
-            repoResponse.value = trendingRepos
-            isLoading.set(false)
-            isSwipeRefresh.value = false
-            isRequestFailed.set(false)
-        }
-        val failed: (String?) -> Unit = {
-            isLoading.set(false)
-            isRequestFailed.set(true)
-        }
         CoroutineScope(Dispatchers.Main).launch {
+            val success: () -> Unit = {
+                saveCacheTime()
+                repoResponse.value = trendingRepos
+                isLoading.set(false)
+                isSwipeRefresh.value = false
+                isRequestFailed.set(false)
+            }
+            val failed: (String?) -> Unit = {
+                isLoading.set(false)
+                isRequestFailed.set(true)
+            }
             repository.insertDataIntoLocal(trendingRepos, success, failed)
         }
     }
@@ -128,4 +129,5 @@ class MainViewModel(application: MyApplication) : BaseViewModel(application) {
 
     private fun deleteCacheTime() {
         sharedPreferences.edit().remove("cache_time").apply()
-    }}
+    }
+}

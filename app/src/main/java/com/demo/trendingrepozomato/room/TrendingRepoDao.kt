@@ -14,11 +14,11 @@ import com.demo.trendingrepozomato.models.TrendingRepoResponse
 abstract class TrendingRepoDao {
 
     @Query("SELECT * FROM trendingreporesponse ")
-    abstract fun getAllTrendingRepo(): List<TrendingRepoResponse>
+    abstract suspend fun getAllTrendingRepo(): List<TrendingRepoResponse>
 
     @Query("DELETE FROM trendingreporesponse")
-    abstract fun deleteAllTrendingRepo()
+    abstract suspend fun deleteAllTrendingRepo()
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertTrendingRepos(trendingRepo: List<TrendingRepoResponse>)
+    abstract suspend fun insertTrendingRepos(trendingRepo: List<TrendingRepoResponse>)
 }

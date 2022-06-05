@@ -27,7 +27,8 @@ class Repository(
         failed: (String?) -> Unit
     ) {
         try {
-            val arrayList =  withContext(Dispatchers.IO){apiInterface.getTrendingRepoAsync().await()}
+            val arrayList =
+                withContext(Dispatchers.IO) { apiInterface.getTrendingRepoAsync().await() }
             success(arrayList)
         } catch (e: Exception) {
             failed(e.message)
@@ -37,13 +38,12 @@ class Repository(
     /**
      * this method will load trending repo from the local database
      */
-     fun loadDataFromLocal(
+    suspend fun loadDataFromLocal(
         success: (ArrayList<TrendingRepoResponse>) -> Unit,
         failed: (String?) -> Unit
     ) {
         try {
-            val arrayList =
-                database.getTrendingRepoDao().getAllTrendingRepo() as ArrayList<TrendingRepoResponse>
+            val arrayList = withContext(Dispatchers.IO) { database.getTrendingRepoDao().getAllTrendingRepo() as ArrayList<TrendingRepoResponse> }
             success(arrayList)
         } catch (e: Exception) {
             failed(e.message)
@@ -53,13 +53,13 @@ class Repository(
     /**
      * this method will insert data into the local database
      */
-     fun insertDataIntoLocal(
+    suspend fun insertDataIntoLocal(
         trendingRepos: ArrayList<TrendingRepoResponse>,
         success: () -> Unit,
         failed: (String?) -> Unit
     ) {
         try {
-                database.getTrendingRepoDao().insertTrendingRepos(trendingRepos)
+            withContext(Dispatchers.IO) { database.getTrendingRepoDao().insertTrendingRepos(trendingRepos) }
             success()
         } catch (e: Exception) {
             failed(e.message)
@@ -69,12 +69,12 @@ class Repository(
     /**
      * This method will delete all data from the trending repo table
      */
-     fun deleteAllTrendingRepoFromLocal(
+    suspend fun deleteAllTrendingRepoFromLocal(
         success: () -> Unit,
         failed: (String?) -> Unit
     ) {
         try {
-            database.getTrendingRepoDao().deleteAllTrendingRepo()
+            withContext(Dispatchers.IO) { database.getTrendingRepoDao().deleteAllTrendingRepo() }
             success()
         } catch (e: Exception) {
             failed(e.message)
